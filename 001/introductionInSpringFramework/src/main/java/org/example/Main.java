@@ -19,9 +19,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
-        AnswerDao answerDao = context.getBean(AnswerDao.class);
+        //AnswerDao answerDao = context.getBean(AnswerDao.class);
+        //answerDao.ReadFileDataCSV(fileDataCsv,delimiter);
+        PersonService personService = context.getBean(PersonService.class);
+        List<String> answersList =  personService.readFileAnswerCSV(fileAnswerCsv, delimiter);
+
+        // TODO: Add new code here
+        //personService.comparison(..);
+        //personService.printResults(..);
 
 
-        answerDao.ReadFileDataCSV(fileDataCsv,delimiter);
     }
 }
