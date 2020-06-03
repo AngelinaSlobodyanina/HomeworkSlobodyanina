@@ -6,6 +6,7 @@ import org.example.domain.Questions;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,10 +49,6 @@ public class AnswerDaoSimple implements AnswerDao {
         System.out.println(questionsList);
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 
     public List<String> ReadFileAnswerCSV(String fileAnswerCsv, String delimiter) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileAnswerCsv));
@@ -72,16 +69,28 @@ public class AnswerDaoSimple implements AnswerDao {
 
 
         reader.close();
+
         return answersList;
     }
 
-    public List<String> PersonAnswers() {
-        String answer;
+    public String Person() {
         Scanner in = new Scanner(System.in);
-        List<String> answersList = new ArrayList<>();
-        answer = in.nextLine();
-        answersList.add(answer);
-        return answersList;
+        String name = in.nextLine();
+        return name;
+
     }
 
+    public List<String> PersonAnswers() throws IOException {
+
+        BufferedReader reader = new BufferedReader(new BufferedReader(new InputStreamReader(System.in)));
+
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            String s = reader.readLine();
+            result.add(s);
+        }
+        return result;
+
+    }
 }
