@@ -16,6 +16,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
+
         AnswerDao answerDao = context.getBean(AnswerDao.class);
         PersonService personService = context.getBean(PersonService.class);
 
@@ -36,6 +37,7 @@ public class Main {
         System.out.println("Вы набрали " + score + " баллов из 100");
 
         System.out.println("Ваши ответы:  " + personAnswerList);
+
 
         System.out.println("Правильные ответы: " + answerList);
 

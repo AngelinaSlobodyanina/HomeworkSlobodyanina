@@ -11,7 +11,7 @@
     <bean id="answerDao"
           class="org.example.dao.AnswerDaoSimple">
     </bean>
-      <bean id="personService" class="org.example.service.PersonServiceImpl">
+    <bean id="personService" class="org.example.service.PersonServiceImpl">
         <constructor-arg name="answerDao"  ref="answerDao"/>
     </bean>
 </beans>
