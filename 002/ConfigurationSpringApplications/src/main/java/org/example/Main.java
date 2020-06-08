@@ -1,7 +1,6 @@
 package org.example;
 
 
-import org.example.config.MessageConfig;
 import org.example.config.ServiceConfig;
 import org.example.dao.AnswerDao;
 import org.example.domain.Message;
@@ -23,8 +22,6 @@ public class Main {
 
         AnswerDao answerDao = context.getBean(AnswerDao.class);
         PersonService personService = context.getBean(PersonService.class);
-
-        AnnotationConfigApplicationContext context1= new AnnotationConfigApplicationContext(MessageConfig.class);
         Message message=context.getBean(Message.class);
 
         System.out.println(message.getQuestion1());
