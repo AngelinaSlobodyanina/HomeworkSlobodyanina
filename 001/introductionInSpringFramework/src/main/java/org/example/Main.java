@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.dao.AnswerDao;
-import org.example.service.PersonService;
-
+import org.example.domain.Person;
+import org.example.domain.Question;
+import org.example.service.TestService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
@@ -10,36 +10,25 @@ import java.util.List;
 
 public class Main {
 
-    private static String fileDataCsv = "src/main/resources/data.csv";
-    private static String delimiter = ";";
-    private static String fileAnswerCsv = "src/main/resources/answer.csv";
+    private static final String CSV_FILE_NAME = "src/main/resources/data.csv";
+    private static final String DELIMITER = ";";
+
 
     public static void main(String[] args) throws IOException {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
-
-        AnswerDao answerDao = context.getBean(AnswerDao.class);
-        PersonService personService = context.getBean(PersonService.class);
-
-        System.out.println("Введите своё имя и фамилию");
-        String name = answerDao.Person();
-
-        answerDao.ReadFileDataCSV(fileDataCsv, delimiter);
-
-        System.out.println("\n\nНапишите каждый свой вариант ответа с новой строки, затем нажмите Enter");
-
-        List<String> personAnswerList = answerDao.PersonAnswers();
-
-        List<String> answerList = answerDao.ReadFileAnswerCSV(fileAnswerCsv, delimiter);
-
-        List<String> result = personService.comparison(answerList, personAnswerList);
-        int score = personService.score(result);
-        System.out.println(name);
-        System.out.println("Вы набрали " + score + " баллов из 100");
-
-        System.out.println("Ваши ответы:  " + personAnswerList);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
 
 
-        System.out.println("Правильные ответы: " + answerList);
+        TestService testService = context.getBean(TestService.class);
 
+        List<Question> questions = testService.getQuestions(CSV_FILE_NAME, DELIMITER);
+        int questionsCount = 0;
+        if (questions != null) {
+            questionsCount = questions.size();
+        }
+
+        Person person = testService.createPerson();
+        int score = testService.doTest(person, questions);
+
+        testService.printTestResult(person, score, questionsCount);
     }
 }
