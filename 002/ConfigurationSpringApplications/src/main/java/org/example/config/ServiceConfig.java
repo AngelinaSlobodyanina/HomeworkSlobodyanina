@@ -34,9 +34,10 @@ public class ServiceConfig {
     public AnswerDaoSimple answerDaoSimple() {
         return new AnswerDaoSimple();
     }
+
     @Bean
     public Message message() {
-        return new Message() ;
+        return new Message();
     }
 }
 

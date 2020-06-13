@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.domain.Question;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class QuestionDaoCsvImpl implements QuestionDao {
 
     public List<Question> getQuestionsFromFile(String csvFileName) throws IOException {
 
-       return  getQuestionsFromFile(csvFileName, CSV_DEFAULT_DELIMITER);
+        return getQuestionsFromFile(csvFileName, CSV_DEFAULT_DELIMITER);
     }
 
 

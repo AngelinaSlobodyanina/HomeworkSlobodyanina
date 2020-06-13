@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 public class Questions {//read all values from data.csv file
 
 
-   @Value("${data.csv}")
+    @Value("${data.csv}")
     private String question, answer1, answer2, answer3, answer4;
 
     public void setQuestion(String question) {

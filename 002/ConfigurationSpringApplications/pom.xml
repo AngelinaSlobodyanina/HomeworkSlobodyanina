@@ -22,9 +22,13 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.1</version>
-                <executions><execution>
-                    <goals><goal>java</goal></goals>
-                </execution></executions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <mainClass>org.example.Main</mainClass>
                 </configuration>

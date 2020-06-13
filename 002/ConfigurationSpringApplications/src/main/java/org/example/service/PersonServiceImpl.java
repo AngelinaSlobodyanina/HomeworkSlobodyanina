@@ -11,7 +11,6 @@ public class PersonServiceImpl implements PersonService {
     }
 
 
-
     public List<String> comparison(List<String> correctAnswer, List<String> personAnswer) {
         Iterator<String> corAnswer = correctAnswer.iterator();
         Iterator<String> perAnswer = personAnswer.iterator();
