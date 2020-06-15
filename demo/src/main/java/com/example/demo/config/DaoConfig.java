@@ -1,6 +1,6 @@
-package com.example.demo.onfig;
+package com.example.demo.config;
 
-import com.example.demo.dao.QuestionDao;
+import com.example.demo.dao.QuestionDaoCSV;
 import com.example.demo.dao.QuestionDaoCsvImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DaoConfig {
     @Bean
-    public QuestionDao questionDao() {
+    public QuestionDaoCSV questionDaoCSV() {
         return new QuestionDaoCsvImpl();
     }
 }

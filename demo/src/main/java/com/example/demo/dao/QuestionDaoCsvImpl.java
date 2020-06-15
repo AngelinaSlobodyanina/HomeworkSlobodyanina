@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 @Service
 @Repository("questionDao")
-public class QuestionDaoCsvImpl implements QuestionDao {
+public class QuestionDaoCsvImpl implements QuestionDaoCSV {
 
     private static final String CSV_DEFAULT_DELIMITER = ";";
 

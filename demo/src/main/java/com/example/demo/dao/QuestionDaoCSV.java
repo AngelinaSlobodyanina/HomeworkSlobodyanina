@@ -5,7 +5,7 @@ import com.example.demo.domain.Question;
 import java.io.IOException;
 import java.util.List;
 
-public interface QuestionDao {
+public interface QuestionDaoCSV {
 
     List<Question> getQuestionsFromFile(String csvFileName) throws IOException;
 

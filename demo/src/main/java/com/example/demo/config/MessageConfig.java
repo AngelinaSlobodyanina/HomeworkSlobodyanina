@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import com.example.demo.dao.MessageDaoPropertiesImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,13 +11,13 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 @Configuration
 public class MessageConfig {
     @Bean
-    public MessageSource messageSource() {
+    @Autowired
+    public MessageSource messageSource(MessageDaoPropertiesImpl messageProperties) {
         ReloadableResourceBundleMessageSource messageSource
                 = new ReloadableResourceBundleMessageSource();
-        //messageSource.setBasename("/i18n/src/main/resources/bundle_en_US.properties");
-        messageSource.setBasename("/l10n/messages_en_US.properties");
+        String baseName = messageProperties.getLocaleBundle();
+        messageSource.setBasename(baseName);
         messageSource.setDefaultEncoding("UTF-8");
-        //Locale.setDefault(Locale.ENGLISH);
         return messageSource;
     }
 }

@@ -1,11 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.QuestionDao;
+import com.example.demo.dao.QuestionDaoCSV;
 import com.example.demo.domain.Person;
 import com.example.demo.domain.Question;
-
-import org.springframework.context.MessageSource;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.util.*;
@@ -14,45 +11,45 @@ import static java.lang.System.lineSeparator;
 
 
 public class TestServiceImpl implements TestService {
+    private MessageLocale locale;
+
+    //MessageSource resources = new ClassPathXmlApplicationContext("spring-context.xml");
 
 
-    MessageSource resources = new ClassPathXmlApplicationContext("spring-context.xml");
+    String READ_QUESTIONS_ERROR_MESSAGE = locale.message("readQuestionError");
+    String ENTER_FIRST_NAME_MESSAGE = locale.message("enterFirstName");
+    String ENTER_LAST_NAME_MESSAGE = locale.message("enterLastName");
+
+    String RESULT_MESSAGE1 = locale.message("result1");
+    String RESULT_MESSAGE2 = locale.message("result2");
+
+    String QUESTION_NUMBER_MESSAGE = locale.message("questionNumber");
+    String QUESTION_CHOICE_MESSAGE = locale.message("questionChoice");
+    String QUESTION_ENTER_MESSAGE = locale.message("questionEnter");
+
+    String ANSWER_INPUT_ERROR = locale.message("answerInputError");
+    String EMPTY_QUESTIONS_ERROR = locale.message("emptyQuestionsError");
 
 
-    String READ_QUESTIONS_ERROR_MESSAGE = resources.getMessage("readQuestionError", null, Locale.US);
-    String ENTER_FIRST_NAME_MESSAGE = resources.getMessage("enterFirstName", null, Locale.US);
-    String ENTER_LAST_NAME_MESSAGE = resources.getMessage("enterLastName", null, Locale.US);
-
-    String RESULT_MESSAGE1 = resources.getMessage("result1", null, Locale.US);
-    String RESULT_MESSAGE2 = resources.getMessage("result2", null, Locale.US);
-
-    String QUESTION_NUMBER_MESSAGE = resources.getMessage("questionNumber", null, Locale.US);
-    String QUESTION_CHOICE_MESSAGE = resources.getMessage("questionChoice", null, Locale.US);
-    String QUESTION_ENTER_MESSAGE = resources.getMessage("questionEnter", null, Locale.US);
-
-    String ANSWER_INPUT_ERROR = resources.getMessage("answerInputError", null, Locale.US);
-    String EMPTY_QUESTIONS_ERROR = resources.getMessage("emptyQuestionsError", null, Locale.US);
-
-
-    private QuestionDao questionDao;
+    private QuestionDaoCSV questionDaoCSV;
 
     public TestServiceImpl() {
     }
 
-    public TestServiceImpl(QuestionDao questionDao) {
+    public TestServiceImpl(QuestionDaoCSV questionDaoCSV) {
 
-        this.questionDao = questionDao;
+        this.questionDaoCSV = questionDaoCSV;
     }
 
 
-    public QuestionDao getQuestionDao() {
+    public QuestionDaoCSV getQuestionDaoCSV() {
 
-        return questionDao;
+        return questionDaoCSV;
     }
 
-    public void setQuestionDao(QuestionDao questionDao) {
+    public void setQuestionDaoCSV(QuestionDaoCSV questionDaoCSV) {
 
-        this.questionDao = questionDao;
+        this.questionDaoCSV = questionDaoCSV;
     }
 
     public List<Question> getQuestions(String fileName, String delimiter) {
@@ -61,7 +58,7 @@ public class TestServiceImpl implements TestService {
 
         try {
 
-            questions = questionDao.getQuestionsFromFile(fileName, delimiter);
+            questions = questionDaoCSV.getQuestionsFromFile(fileName, delimiter);
 
         } catch (IOException ioe) {
             System.out.println(READ_QUESTIONS_ERROR_MESSAGE);

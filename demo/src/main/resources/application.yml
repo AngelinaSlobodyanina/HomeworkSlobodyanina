@@ -1,4 +1,7 @@
 server:
   port: 8081
 application:
-  version: 1.0
+  quiz-paths:
+    ru: /quiz/ru.yml
+    en: /quiz/en.yml
+  locale-bundle-path: classpath:locale

@@ -1,13 +1,16 @@
 package com.example.demo;
 
 import com.example.demo.config.MessageConfig;
+import com.example.demo.dao.MessageDaoPropertiesImpl;
 import com.example.demo.domain.Person;
 import com.example.demo.domain.Question;
 import com.example.demo.service.TestService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.io.IOException;
@@ -15,16 +18,19 @@ import java.util.List;
 import java.util.Locale;
 
 @SpringBootApplication
+//@ComponentScan
+@EnableConfigurationProperties(MessageDaoPropertiesImpl.class)
 public class DemoApplication {
 
 
     private static final String CSV_FILE_NAME = "src/main/resources/data.csv";
     private static final String DELIMITER = ";";
+
     public static void main(String[] args) throws IOException {
 
         //*************************
         // работает spring-boot
-        //SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args);
         //************************************88
         // выдает ошибку: "Exception in thread "main" org.springframework.context.NoSuchMessageException:
         // No message found under code 'readQuestionError' for locale 'en_US'.
@@ -75,7 +81,7 @@ public class DemoApplication {
     }*/
 //**************************************88
         //всё работает как работа изначально
-       AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoApplication.class);
+      /* AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoApplication.class);
 
         TestService testService = context.getBean(TestService.class);
 
@@ -90,7 +96,7 @@ public class DemoApplication {
 
         testService.printTestResult(person, score, questionsCount);
 
-    }
+*/
         //Очень многие попытки найти решение
        /* ReloadableResourceBundleMessageSource context1= new ReloadableResourceBundleMessageSource();
 
@@ -107,5 +113,5 @@ public class DemoApplication {
          System.out.println(message);*/
 
     }
-
+}
 
