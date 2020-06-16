@@ -3,10 +3,13 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
-public class MessageLocale {
+import java.util.Locale;
+
+@Component
+    public class MessageLocale {
     private MessageSource messageSource;
     private java.util.Locale nativeLocale;
 
@@ -16,7 +19,8 @@ public class MessageLocale {
 
         switch (code) {
             case "en":
-                nativeLocale = java.util.Locale.ENGLISH;
+                //nativeLocale = java.util.Locale.ENGLISH;
+                nativeLocale = new java.util.Locale("en", "EN");
                 break;
             case "ru":
                 nativeLocale = new java.util.Locale("ru", "RU");

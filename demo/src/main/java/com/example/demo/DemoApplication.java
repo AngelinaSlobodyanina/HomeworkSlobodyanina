@@ -5,11 +5,15 @@ import com.example.demo.dao.MessageDaoPropertiesImpl;
 import com.example.demo.domain.Person;
 import com.example.demo.domain.Question;
 import com.example.demo.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -21,6 +25,9 @@ import java.util.Locale;
 //@ComponentScan
 @EnableConfigurationProperties(MessageDaoPropertiesImpl.class)
 public class DemoApplication {
+
+    @Autowired
+    private TestService testService;
 
 
     private static final String CSV_FILE_NAME = "src/main/resources/data.csv";
@@ -113,5 +120,23 @@ public class DemoApplication {
          System.out.println(message);*/
 
     }
+
+    @Bean
+    public CommandLineRunner runATest(ApplicationContext ctx) {
+        return args -> {
+
+            List<Question> questions = testService.getQuestions(CSV_FILE_NAME, DELIMITER);
+            int questionsCount = 0;
+            if (questions != null) {
+                questionsCount = questions.size();
+            }
+
+            Person person = testService.createPerson();
+            int score = testService.doTest(person, questions);
+
+            testService.printTestResult(person, score, questionsCount);
+        };
+    }
+
 }
 

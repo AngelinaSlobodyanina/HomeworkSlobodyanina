@@ -3,33 +3,38 @@ package com.example.demo.service;
 import com.example.demo.dao.QuestionDaoCSV;
 import com.example.demo.domain.Person;
 import com.example.demo.domain.Question;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
 
 import static java.lang.System.lineSeparator;
 
-
+@Service
 public class TestServiceImpl implements TestService {
+
+    @Autowired
     private MessageLocale locale;
 
-    //MessageSource resources = new ClassPathXmlApplicationContext("spring-context.xml");
+
+    private MessageSource messageSource;
 
 
-    String READ_QUESTIONS_ERROR_MESSAGE = locale.message("readQuestionError");
-    String ENTER_FIRST_NAME_MESSAGE = locale.message("enterFirstName");
-    String ENTER_LAST_NAME_MESSAGE = locale.message("enterLastName");
+    private static final String READ_QUESTIONS_ERROR_KEY = "ReadQuestion.Error";//"Can not read questions data from the input file.";
+    private static final String ENTER_FIRST_NAME_KEY = "EnterFirstName.Message";//"Enter your First Name:";
+    private static final String ENTER_LAST_NAME_KEY = "EnterLastName.Message";//"Enter your Last Name:";
 
-    String RESULT_MESSAGE1 = locale.message("result1");
-    String RESULT_MESSAGE2 = locale.message("result2");
+    private static final String RESULT_KEY1 = "Result.Message1";//"You have";
+    private static final String RESULT_KEY2 = "Result.Message2";//"correct answer(s) of";
 
-    String QUESTION_NUMBER_MESSAGE = locale.message("questionNumber");
-    String QUESTION_CHOICE_MESSAGE = locale.message("questionChoice");
-    String QUESTION_ENTER_MESSAGE = locale.message("questionEnter");
+    private static final String QUESTION_NUMBER_KEY = "QuestionNumber.Message";//"Question #";
+    private static final String QUESTION_CHOICE_KEY = "QuestionChoice.Message";//"Please select only one correct answer:";
+    private static final String QUESTION_ENTER_KEY = "QuestionEnter.Message";//"Enter correct answer number: ";
 
-    String ANSWER_INPUT_ERROR = locale.message("answerInputError");
-    String EMPTY_QUESTIONS_ERROR = locale.message("emptyQuestionsError");
-
+    private static final String ANSWER_INPUT_ERROR_KEY = "AnswerInput.Error";//"Incorrect answer format.";
+    private static final String EMPTY_QUESTIONS_ERROR_KEY = "EmptyQuestion.Error";//"No questions found.";
 
     private QuestionDaoCSV questionDaoCSV;
 
@@ -61,7 +66,7 @@ public class TestServiceImpl implements TestService {
             questions = questionDaoCSV.getQuestionsFromFile(fileName, delimiter);
 
         } catch (IOException ioe) {
-            System.out.println(READ_QUESTIONS_ERROR_MESSAGE);
+            System.out.println(locale.message(READ_QUESTIONS_ERROR_KEY));
             ioe.printStackTrace();
         }
 
@@ -70,10 +75,10 @@ public class TestServiceImpl implements TestService {
 
     public Person createPerson() {
         Scanner in = new Scanner(System.in);
-        System.out.println(ENTER_FIRST_NAME_MESSAGE);
+        System.out.println(locale.message(ENTER_FIRST_NAME_KEY));
         String firstName = in.nextLine();
 
-        System.out.println(ENTER_LAST_NAME_MESSAGE);
+        System.out.println(locale.message(ENTER_LAST_NAME_KEY));
         String lastName = in.nextLine();
 
         return new Person(firstName, lastName);
@@ -94,12 +99,12 @@ public class TestServiceImpl implements TestService {
     protected void printQuestion(Question question) {
 
         StringBuilder questionMessage =
-                new StringBuilder(QUESTION_NUMBER_MESSAGE)
+                new StringBuilder(locale.message(QUESTION_NUMBER_KEY))
                         .append(question.getQuestionNumber())
                         .append(":").append(lineSeparator())
                         .append(question.getQuestionText())
                         .append(lineSeparator())
-                        .append(QUESTION_CHOICE_MESSAGE)
+                        .append(locale.message(QUESTION_CHOICE_KEY))
                         .append(lineSeparator());
 
 
@@ -111,7 +116,7 @@ public class TestServiceImpl implements TestService {
                     .append(lineSeparator());
         }
 
-        questionMessage.append(QUESTION_ENTER_MESSAGE);
+        questionMessage.append(locale.message(QUESTION_ENTER_KEY));
         System.out.println(questionMessage.toString());
     }
 
@@ -132,7 +137,7 @@ public class TestServiceImpl implements TestService {
 
                     givenAnswers.add(in.nextInt());
                 } catch (Exception ex) {
-                    System.out.println(ANSWER_INPUT_ERROR);
+                    System.out.println(locale.message(ANSWER_INPUT_ERROR_KEY));
                 }
                 correctAnswers.add(question.getCorrectAnswerIndex());
             }
@@ -140,7 +145,7 @@ public class TestServiceImpl implements TestService {
             score = checkAnswers(givenAnswers, correctAnswers);
 
         } else {
-            System.out.println(EMPTY_QUESTIONS_ERROR);
+            System.out.println(locale.message(EMPTY_QUESTIONS_ERROR_KEY));
         }
 
         return score;
@@ -152,9 +157,9 @@ public class TestServiceImpl implements TestService {
         System.out.println(
                 new StringBuilder(person.getFistName()).append(" ")
                         .append(person.getLastName()).append(", ")
-                        .append(RESULT_MESSAGE1)
+                        .append(locale.message(RESULT_KEY1))
                         .append(" ").append(score).append(" ")
-                        .append(RESULT_MESSAGE2).append(" ")
+                        .append(locale.message(RESULT_KEY2)).append(" ")
                         .append(questionsCount).append(".")
                         .toString());
     }
