@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Locale;
 
 @Component
-    public class MessageLocale {
+public class MessageLocale {
     private MessageSource messageSource;
     private java.util.Locale nativeLocale;
 

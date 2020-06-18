@@ -44,12 +44,9 @@ public class DemoApplication {
         /*AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MessageConfig.class);
         String mes = context.getMessage("readQuestionError", null, Locale.US);
         System.out.println(mes);
-
         Locale english = Locale.ENGLISH;
         Locale russian = new Locale("ru", "RU");
-
         System.out.println("-------------------Получение MessageSource из контекста--------------------------");
-
         System.out.println(context.getMessage("readQuestionError", null, english));
         System.out.println(context.getMessage("readQuestionError", null, russian));*/
 
@@ -63,56 +60,39 @@ public class DemoApplication {
        /*GenericXmlApplicationContext context = new GenericXmlApplicationContext();
         context.load("classpath:scr/main/resources/context.xml");
         context.refresh();
-
         Locale english = Locale.ENGLISH;
         Locale russian = new Locale("ru", "RU");
-
         System.out.println("-------------------Получение MessageSource из контекста--------------------------");
-
         System.out.println(context.getMessage("msg", null, english));
         System.out.println(context.getMessage("msg", null, russian));
-
         System.out.println(context.getMessage("nameMsg", new Object[] { "Name1", "Name2"}, english));
         System.out.println(context.getMessage("nameMsg", new Object[] { "Name1", "Name2"}, russian));
-
         //----------Получаем доступ к бину ResourceBundleMessageSource-------------
         System.out.println("---------------------------Лукап ResourceBundleMessageSource-------------------------------");
-
         MessageSource messageSource = (MessageSource) context.getBean("messageSource");
-
         System.out.println(messageSource.getMessage("msg", null, english));
         System.out.println(messageSource.getMessage("msg", null, russian));
-
         System.out.println(messageSource.getMessage("nameMsg", new Object[] { "Name1", "Name2"}, english));
         System.out.println(messageSource.getMessage("nameMsg", new Object[] { "Name1", "Name2"}, russian));
     }*/
 //**************************************88
         //всё работает как работа изначально
       /* AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoApplication.class);
-
         TestService testService = context.getBean(TestService.class);
-
         List<Question> questions = testService.getQuestions(CSV_FILE_NAME, DELIMITER);
         int questionsCount = 0;
         if (questions != null) {
             questionsCount = questions.size();
         }
-
         Person person = testService.createPerson();
         int score = testService.doTest(person, questions);
-
         testService.printTestResult(person, score, questionsCount);
-
 */
         //Очень многие попытки найти решение
        /* ReloadableResourceBundleMessageSource context1= new ReloadableResourceBundleMessageSource();
-
         MessageSource message=context.getBean("messageSource",Message.class);
         MessageSource message = context1.MESSAGE_SOURCE_BEAN_NAME("messageSource",Message.class)
-
         System.out.println(message.getMessage("message.readQuestionError",null,Locale.ENGLISH));
-
-
         MessageSource resources = new ClassPathXmlApplicationContext("spring-context.xml");
         AnnotationConfigApplicationContext resources=new AnnotationConfigApplicationContext(Main.class);
         MessageSource m=resources.getBean(MessageSource.class);
@@ -139,4 +119,3 @@ public class DemoApplication {
     }
 
 }
-
