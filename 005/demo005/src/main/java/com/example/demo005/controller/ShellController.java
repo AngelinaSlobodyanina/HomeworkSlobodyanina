@@ -28,7 +28,7 @@ public class ShellController {
     public int add(int a, int b) {
         return a + b;
     }
-    @ShellMethod(key = "runTest", value = "Say hello to username")
+    @ShellMethod(key = "runTest", value = "Work all programme")
     public void runATest() {
         List<Question> questions = testService.getQuestions(CSV_FILE_NAME, DELIMITER);
         int questionsCount = 0;
