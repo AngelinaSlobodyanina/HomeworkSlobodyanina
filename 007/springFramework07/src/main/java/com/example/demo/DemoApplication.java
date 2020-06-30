@@ -1,42 +1,64 @@
 package com.example.demo;
 
-import com.example.demo.dao.AuthorDao;
-import com.example.demo.dao.BookDao;
-import com.example.demo.dao.BookDaoJdbc;
-import com.example.demo.dao.GenreDao;
-import com.example.demo.domain.Author;
-import com.example.demo.domain.Book;
-import com.example.demo.domain.Genre;
-import org.h2.tools.Console;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.jline.utils.AttributedString;
+import org.jline.utils.AttributedStyle;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.shell.jline.PromptProvider;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class DemoApplication {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws IOException {
 
-        SpringApplication.run(DemoApplication.class, args);}
+        SpringApplication.run(DemoApplication.class, args);
+    }
+    @Bean
+    public PromptProvider myPromptProvider() {
+        return () -> new AttributedString("shell:>",
+                AttributedStyle.DEFAULT.foreground(AttributedStyle.RED));
+    }
 
-
-   @Bean
+    /*@Bean
     public CommandLineRunner runATest(ApplicationContext ctx) {
         return args -> {
             AuthorDao authorDao = ctx.getBean(AuthorDao.class);
-            System.out.println("All count " + authorDao.count());
+            // System.out.println("All count " + authorDao.count());
             authorDao.insert(new Author(null, "Harry Harrison"));
-            System.out.println("All count " + authorDao.count());
+            //System.out.println("All count " + authorDao.count());
             Author author = authorDao.getById(2);
             System.out.println("Author id: " + author.getId() + ", name: " + author.getName());
             Author author1 = authorDao.getById(5);
             System.out.println("Author id: " + author1.getId() + ", name: " + author1.getName());
+        };
+    }*/
+}
+
+  /*  }
+    @Bean
+    CommandLineRunner runner(BookRepository bookRepository) {
+        return a -> {
+            Book book = new Book();
+            book.setAuthor(new Author(1L));
+            book.setGenres(Arrays.asList(new Genre(1L), new Genre(2L), new Genre(3L)));
+            book.setTitle("Stainless Steel Rat");
+            book.setCode(new String("978-5-389-10331-3"));
+            bookRepository.save(book);
+        };
+    }
+
+
+}*/
+
+
 
            // BookDao bookDao = ctx.getBean(BookDao.class);
 //            System.out.println("All count " + bookDao.count());
@@ -48,9 +70,7 @@ public class DemoApplication {
 //            System.out.println("Book id: " + book1.getId() + ", title: " + book1.getTitle() + ", code: " + book1.getCode());
 
 
-        };
 
-    }
 
 /*
         ApplicationContext context = SpringApplication.run(DemoApplication.class);
@@ -109,4 +129,3 @@ public class DemoApplication {
         Console.main(args);}*/
 
 
-}

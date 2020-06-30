@@ -14,15 +14,12 @@ import java.util.Map;
 @SuppressWarnings({"SqlNoDataSourceInspection", "ConstantConditions", "SqlDialectInspection"})
 @Repository
 public class AuthorDaoJdbc implements AuthorDao {
-//public class PersonDaoJdbc(JdbcOperations jdbcOperations) {
 
-    private final JdbcOperations jdbc;
-    private final NamedParameterJdbcOperations namedParameterJdbcOperations;
+    private  JdbcOperations jdbc;
+    private  NamedParameterJdbcOperations namedParameterJdbcOperations;
 
     public AuthorDaoJdbc(NamedParameterJdbcOperations namedParameterJdbcOperations)
     {
-        // Это просто отсавили, чтобы не переписывать код
-        // В идеале всё должно быть на NamedParameterJdbcOperations
         this.jdbc = namedParameterJdbcOperations.getJdbcOperations();
         this.namedParameterJdbcOperations = namedParameterJdbcOperations;
     }

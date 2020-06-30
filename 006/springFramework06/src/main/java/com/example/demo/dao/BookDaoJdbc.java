@@ -14,8 +14,8 @@ import java.util.Map;
 
 @Repository
 public class BookDaoJdbc implements BookDao{
-    private final JdbcOperations jdbc;
-    private final NamedParameterJdbcOperations namedParameterJdbcOperations;
+    private  JdbcOperations jdbc;
+    private  NamedParameterJdbcOperations namedParameterJdbcOperations;
 
     public BookDaoJdbc(NamedParameterJdbcOperations namedParameterJdbcOperations)
     {
