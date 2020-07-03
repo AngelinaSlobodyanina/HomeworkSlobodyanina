@@ -6,6 +6,8 @@ public interface AuthorDao {
 
     void insert(Author author);
 
+    void updata(Author author);
+
     Author getById(Integer id);
 
     Author getByName(String name);

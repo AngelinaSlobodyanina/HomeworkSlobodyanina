@@ -4,30 +4,27 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "author")
 public class Author implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "author_id")
     private Integer id;
     @Column(name = "name")
     private String name;
-    @ManyToMany
-            /*(cascade = CascadeType.ALL,
-            mappedBy = "author",
-            fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "book_author",
+            name = "author_of_book",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
-    )*/
-    private List<Book> bookList;
-    @OneToOne/*(cascade = CascadeType.ALL)
-    @JoinColumn(name = "genre_id")*/
+    )
+    private Set<Book> bookList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "genre_id")
     private Genre genre;
 
     public Author() {
@@ -38,14 +35,13 @@ public class Author implements Serializable {
         this.name = name;
     }
 
-    public Author(Integer id, String name, List<Book> book, Genre genre) {
-        this.id = id;
+    public Author( String name, Set<Book> book, Genre genre) {
         this.name = name;
         this.bookList = book;
         this.genre = genre;
     }
 
-    public void setBookList(List<Book> bookList) {
+    public void setBookList(Set<Book> bookList) {
         this.bookList = bookList;
     }
 
@@ -53,7 +49,7 @@ public class Author implements Serializable {
         this.genre = genre;
     }
 
-    public List<Book> getBookList() {
+    public Set<Book> getBookList() {
         return bookList;
     }
 

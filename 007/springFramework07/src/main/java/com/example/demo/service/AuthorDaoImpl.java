@@ -1,5 +1,6 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
+import com.example.demo.dao.AuthorDao;
 import com.example.demo.domain.Author;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,6 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@SuppressWarnings("JpaQlInspection")
 @Repository
 @Transactional
 public class AuthorDaoImpl implements AuthorDao {
@@ -24,6 +24,10 @@ public class AuthorDaoImpl implements AuthorDao {
     @Override
     public void insert(Author author){
         em.persist(author);
+    }
+    @Override
+    public void updata(Author author){
+        em.refresh(author);
     }
     @Override
     public Author getById(Integer id){

@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "genre")
 public class Genre implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "genre_id")
     private  Integer id;
     @Column(name = "title")
@@ -21,8 +21,8 @@ public class Genre implements Serializable {
         this.id = id;
         this.title = title;
     }
-    public Genre(Integer id){
-        this.id=id;
+    public Genre(String title) {
+        this.title = title;
     }
     public Genre(){}
 

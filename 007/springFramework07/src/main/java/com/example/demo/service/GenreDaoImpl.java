@@ -1,5 +1,6 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
+import com.example.demo.dao.GenreDao;
 import com.example.demo.domain.Author;
 import com.example.demo.domain.Book;
 import com.example.demo.domain.Genre;
@@ -25,7 +26,7 @@ import java.util.Map;
 @SuppressWarnings("JpaQlInspection")
 @Repository
 @Transactional
-public class GenreDaoImpl implements GenreDao{
+public class GenreDaoImpl implements GenreDao {
     @PersistenceContext
     private EntityManager em;
 

@@ -1,5 +1,6 @@
-package com.example.demo.dao;
+package com.example.demo.service;
 
+import com.example.demo.dao.BookDao;
 import com.example.demo.domain.Author;
 import com.example.demo.domain.Book;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -25,7 +26,7 @@ import java.util.List;
 @SuppressWarnings("JpaQlInspection")
 @Repository
 @Transactional
-public class BookDaoImpl implements BookDao{
+public class BookDaoImpl implements BookDao {
     @PersistenceContext
     private EntityManager em;
 

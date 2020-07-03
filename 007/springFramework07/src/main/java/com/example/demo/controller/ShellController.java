@@ -8,17 +8,10 @@ import com.example.demo.domain.Book;
 import com.example.demo.domain.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 @ShellComponent
 public class ShellController {
@@ -28,6 +21,7 @@ public class ShellController {
     private BookDao bookDao;
     @Autowired
     private GenreDao genreDao;
+
     @ShellMethod(key = "insertSomeAuthors", value = "insert some authors")
     public void insertSomeAuthors() {
          authorDao.insert(new Author(null, "Harry_Harrison"));
@@ -110,10 +104,15 @@ public class ShellController {
         }
         System.out.println();
     }
-    @ShellMethod(key = "registerAuthor", value = "registrer a new author")
-    public String registerAuthor(@ShellOption String name) {
-        authorDao.insert(new Author(null, name));
-        Author author = authorDao.getByName(name);
-        return String.format("The new entity was registered with id %s", author.getId());
+    @ShellMethod(key = "insert",value = "Insert author (author_name, book_title, book_code, genre)")
+    public void addAuthor(String author, String book_title,String book_code, String genre) {
+        String[] bookTitleStrArr = book_title.split(",");
+        String[] bookCodeStrArr = book_code.split(",");
+        HashSet<Book> bookHashSet = new HashSet<Book>();
+        for (int i = 0; i < bookTitleStrArr.length; i++)
+            bookHashSet.add(new Book(bookTitleStrArr[i],bookCodeStrArr[i]));
+
+
+       authorDao.insert(new Author(author,bookHashSet,new Genre(genre)));
     }
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -11,7 +12,7 @@ import java.util.List;
 @Table(name = "book")
 public class Book implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "book_id")
     private  Integer id;
     @Column(name = "title")
@@ -22,10 +23,17 @@ public class Book implements Serializable {
     private List<Genre> genres;
     @ManyToOne
     private Author author;*/
+   @ManyToMany(fetch = FetchType.EAGER)
+   private List<Author> authors = new ArrayList<Author>();
+
     public Book(Integer id, String title, String code) {
         this.id = id;
         this.title = title;
         this.code =code;
+    }
+    public Book( String title,String code) {
+        this.title = title;
+        this.code=code;
     }
     public Book(){
     }
