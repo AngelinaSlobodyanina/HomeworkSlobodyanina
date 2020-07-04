@@ -13,18 +13,21 @@ public class Genre implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "genre_id")
-    private  Integer id;
+    private Integer id;
     @Column(name = "title")
-    private  String title;
+    private String title;
 
     public Genre(Integer id, String title) {
         this.id = id;
         this.title = title;
     }
+
     public Genre(String title) {
         this.title = title;
     }
-    public Genre(){}
+
+    public Genre() {
+    }
 
     public Integer getId() {
         return id;
@@ -42,9 +45,10 @@ public class Genre implements Serializable {
     public String getTitle() {
         return title;
     }
+
     @Override
     public String toString() {
-        return "Genre id: " + id + ", title: "+title;
+        return "Genre id: " + id + ", title: " + title;
     }
 }
 

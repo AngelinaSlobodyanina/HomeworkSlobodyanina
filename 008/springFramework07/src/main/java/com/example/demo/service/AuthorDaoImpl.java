@@ -1,7 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.AuthorDao;
+import com.example.demo.dao.BookDao;
+import com.example.demo.dao.ExperienceDao;
 import com.example.demo.domain.Author;
+import com.example.demo.domain.Book;
+import com.example.demo.domain.Experience;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -22,15 +27,17 @@ public class AuthorDaoImpl implements AuthorDao {
     private EntityManager em;
 
     @Override
-    public void insert(Author author){
+    public void insert(Author author) {
         em.persist(author);
     }
+
     @Override
-    public void updata(Author author){
+    public void updata(Author author) {
         em.refresh(author);
     }
+
     @Override
-    public Author getById(Integer id){
+    public Author getById(Integer id) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Author> cq = cb.createQuery(Author.class);
         Root<Author> authorRoot = cq.from(Author.class);
@@ -40,8 +47,9 @@ public class AuthorDaoImpl implements AuthorDao {
         return query.getResultList().get(0);
         //return em.find(Author.class,id);
     }
+
     @Override
-    public Author getByName(String name){
+    public Author getByName(String name) {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Author> cq = cb.createQuery(Author.class);
@@ -56,8 +64,9 @@ public class AuthorDaoImpl implements AuthorDao {
         query.setParameter("name", name);
         return query.getSingleResult();*/
     }
+
     @Override
-    public List<Author> findAll(){
+    public List<Author> findAll() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Author> cq = cb.createQuery(Author.class);
         Root<Author> authorRoot = cq.from(Author.class);
@@ -68,5 +77,4 @@ public class AuthorDaoImpl implements AuthorDao {
                 Author.class);
         return query.getResultList();*/
     }
-
 }

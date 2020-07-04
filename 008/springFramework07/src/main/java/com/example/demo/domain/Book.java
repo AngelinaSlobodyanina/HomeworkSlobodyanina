@@ -14,29 +14,29 @@ public class Book implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "book_id")
-    private  Integer id;
+    private Integer id;
     @Column(name = "title")
-    private  String title;
+    private String title;
     @Column(name = "code")
-    private  String code;
-   /* @ManyToMany
-    private List<Genre> genres;
-    @ManyToOne
-    private Author author;*/
-   @ManyToMany(fetch = FetchType.EAGER)
-   private List<Author> authors = new ArrayList<Author>();
+    private String code;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Author> authors = new ArrayList<Author>();
+
 
     public Book(Integer id, String title, String code) {
         this.id = id;
         this.title = title;
-        this.code =code;
+        this.code = code;
     }
-    public Book( String title,String code) {
+
+    public Book(String title, String code) {
         this.title = title;
-        this.code=code;
+        this.code = code;
     }
-    public Book(){
+
+    public Book() {
     }
+
     public Integer getId() {
         return id;
     }
@@ -47,6 +47,14 @@ public class Book implements Serializable {
 
     public String getCode() {
         return code;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
     }
 
     public void setId(Integer id) {
@@ -60,9 +68,10 @@ public class Book implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
+
     @Override
     public String toString() {
-        return "Book id: " + id + ", title: "+title+",code: "+code;
+        return "Book id: " + id + ", title: " + title + ",code: " + code;
     }
 }
 

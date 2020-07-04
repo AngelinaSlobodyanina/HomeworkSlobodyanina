@@ -31,11 +31,12 @@ public class GenreDaoImpl implements GenreDao {
     private EntityManager em;
 
     @Override
-    public void insert(Genre genre){
+    public void insert(Genre genre) {
         em.persist(genre);
     }
+
     @Override
-    public Genre getById(Integer id){
+    public Genre getById(Integer id) {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Genre> cq = cb.createQuery(Genre.class);
@@ -46,8 +47,9 @@ public class GenreDaoImpl implements GenreDao {
         return query.getResultList().get(0);
         //return em.find(Genre.class,id);
     }
+
     @Override
-    public Genre getByTitle(String title){
+    public Genre getByTitle(String title) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Genre> cq = cb.createQuery(Genre.class);
         Root<Genre> authorRoot = cq.from(Genre.class);
@@ -63,7 +65,7 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
-    public List<Genre> findAll(){
+    public List<Genre> findAll() {
         TypedQuery<Genre> query = em.createQuery(
                 "select g from genre g",
                 Genre.class);

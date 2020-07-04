@@ -31,11 +31,12 @@ public class BookDaoImpl implements BookDao {
     private EntityManager em;
 
     @Override
-    public void insert(Book book){
+    public void insert(Book book) {
         em.persist(book);
     }
+
     @Override
-    public Book getById(Integer id){
+    public Book getById(Integer id) {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Book> cq = cb.createQuery(Book.class);
@@ -46,8 +47,9 @@ public class BookDaoImpl implements BookDao {
         return query.getResultList().get(0);
         //return em.find(Book.class,id);
     }
+
     @Override
-    public Book getByTitle(String title){
+    public Book getByTitle(String title) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Book> cq = cb.createQuery(Book.class);
         Root<Book> authorRoot = cq.from(Book.class);
@@ -61,8 +63,9 @@ public class BookDaoImpl implements BookDao {
         query.setParameter("title", title);
         return query.getSingleResult();*/
     }
+
     @Override
-    public Book getByCode(String code){
+    public Book getByCode(String code) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Book> cq = cb.createQuery(Book.class);
         Root<Book> authorRoot = cq.from(Book.class);
@@ -76,8 +79,9 @@ public class BookDaoImpl implements BookDao {
         query.setParameter("code", code);
         return query.getSingleResult();*/
     }
+
     @Override
-    public List<Book> findAll(){
+    public List<Book> findAll() {
         TypedQuery<Book> query = em.createQuery(
                 "select b from book b",
                 Book.class);

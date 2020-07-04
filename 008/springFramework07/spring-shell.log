@@ -209,3 +209,75 @@
 1593764311643:findAllAuthors
 1593764445328:insert fh kd d l
 1593764454157:findAllAuthors
+1593777355318:help
+1593777377805:insertSomeAuthors
+1593777410725:insert anna one one_code love
+1593777499875:help
+1593777521087:insert anna one_title one_code love
+1593777541976:insertbook 1 two_title two_code
+1593777569349:findAllAuthors
+1593777592011:insertbook 1 two_title two_code
+1593777602412:insertSomeAuthors
+1593777609942:findAllAuthors
+1593777636461:insertbook 5 two_title two_code
+1593777676129:insertbook null f g
+1593777685577:insertbook 1 t g
+1593777696101:insertbook 9 fd f
+1593782184245:help
+1593782364616:insertSomeAuthors
+1593782393462:insertExperience 5 25
+1593806437634:help
+1593806475418:findAllAuthors
+1593806503139:insert aut title code genre
+1593806506509:findAllAuthors
+1593806545711:insertExperience 5 aaaaa
+1593806554307:insertExperience
+1593806558503:insertExperience 6
+1593806570983:insertExperience 6 25
+1593807272654:help
+1593807296616:insert author title code genre
+1593807303885:findAllAuthors
+1593808172716:help
+1593808182888:insert aut t c g
+1593808190126:findAllAuthors
+1593808201389:insertExperience 1 25
+1593810860899:a
+1593810872864:insert a bt bc g
+1593810887700:insertExpirience 1 2
+1593810907605:insertExperience 1 2
+1593811264671:insert a t c g
+1593811276199:insertExperience 1 2
+1593812221138:insertExperience 2 2
+1593812230201:findAllAuthors
+1593845970579:insert a t c g
+1593845978130:help
+1593845992810:addExperienceByAuthorId 1 25
+1593846203404:insert a t c g
+1593846217179:addExperienceByAuthorId 1 25
+1593846223731:findAllAuthors
+1593846267442:addExperienceByAuthorId 1 28
+1593846273261:findAllAuthors
+1593848176351:help
+1593848205726:insert anna book_title book_code loveStory
+1593848218799:addExperienceByAuthorId 1
+1593848232293:addExperienceByAuthorId 1 25 lovsStory
+1593848248045:findAllAuthors
+1593848542380:help
+1593848549103:indert a t c g
+1593848557449:insert a t c g
+1593848572176:addExperienceByAuthorId 1 25 LoveStory
+1593848578462:findAllAuthors
+1593848665139:addExperienceByAuthorId 1 3 Horror
+1593848672502:findAllAuthors
+1593866333026:help
+1593866340936:insertSomeAuthors
+1593866345990:insertSomeBooks
+1593866350108:insertSomeGenres
+1593866366020:insert a b c t
+1593866376207:findGenreByTitle f
+1593866384257:findGenreById2
+1593866391495:findBookById5
+1593866395005:findBookById 5
+1593866398562:findBookById 9
+1593866425831:addExperienceByAuthorId 1 25 h
+1593866435409:findAllAuthors

@@ -1,5 +1,7 @@
 package com.example.demo.dao;
+
 import com.example.demo.domain.Author;
+
 import java.util.List;
 
 public interface AuthorDao {
@@ -13,5 +15,4 @@ public interface AuthorDao {
     Author getByName(String name);
 
     List<Author> findAll();
-
 }

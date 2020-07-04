@@ -3,16 +3,12 @@ package com.example.demo;
 
 import org.jline.utils.AttributedString;
 import org.jline.utils.AttributedStyle;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.shell.jline.PromptProvider;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Arrays;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -21,6 +17,7 @@ public class DemoApplication {
 
         SpringApplication.run(DemoApplication.class, args);
     }
+
     @Bean
     public PromptProvider myPromptProvider() {
         return () -> new AttributedString("shell:>",
@@ -59,8 +56,7 @@ public class DemoApplication {
 }*/
 
 
-
-           // BookDao bookDao = ctx.getBean(BookDao.class);
+// BookDao bookDao = ctx.getBean(BookDao.class);
 //            System.out.println("All count " + bookDao.count());
 //            bookDao.insert(new Book(null, "Stainless Steel Rat", "978-5-389-10331-3"));
 //            System.out.println("All count " + bookDao.count());
