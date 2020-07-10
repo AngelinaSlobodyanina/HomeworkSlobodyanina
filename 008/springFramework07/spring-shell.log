@@ -281,3 +281,10 @@
 1593866398562:findBookById 9
 1593866425831:addExperienceByAuthorId 1 25 h
 1593866435409:findAllAuthors
+1594120721405:help
+1594120753479:insert author_name book_title book_code genre
+1594120801324:addExperienceByAuthorId 2 book_store 1
+1594120820353:addExperienceByAuthorId 1 2 store
+1594120827975:findAllAuthors
+1594120850205:addExperienceByAuthorId 1 5 market
+1594120855583:findAllAuthors

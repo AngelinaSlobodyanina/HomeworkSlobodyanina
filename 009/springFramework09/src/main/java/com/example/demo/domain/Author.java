@@ -11,9 +11,10 @@ import java.util.Set;
 import static com.example.demo.domain.Author.COLLECTION_TITLE;
 import static com.example.demo.domain.Author.FIELD_NAME;
 
-@Data
+
 @Entity
 @Table(name = COLLECTION_TITLE, uniqueConstraints = @UniqueConstraint(columnNames = {FIELD_NAME}))
+@Data @NoArgsConstructor @RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"id", "books"})
 @ToString(exclude = {"books"})
 
@@ -26,7 +27,6 @@ public class Author {
     @Setter(AccessLevel.NONE)
     private long id;
     @Column(name = FIELD_NAME)
-    @NonNull
     private String name;
     @OneToMany(
             mappedBy = COLLECTION_TITLE,
@@ -37,17 +37,6 @@ public class Author {
 
     @ManyToOne
     @JoinColumn(name = FIELD_EXPERIENCE_ID)
-    @NonNull
     private Experience experience;
 
-    public Author() {
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Author(@NonNull String name) {
-        this.name = name;
-    }
 }
